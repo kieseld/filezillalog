@@ -1,0 +1,28 @@
+﻿<div class="content">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Filters:</th>
+                    <th><input data-ng-model="ipQuery"></th>
+                    <th><input data-ng-model="nameQuery"></th>
+                    <th><input data-ng-model="messageQuery"></th>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <th>IP Address</th>
+                    <th>User Name</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="log in logs | filter:{IpAddress: ipQuery} | filter:{Username: nameQuery} | filter:{StatusMessage: messageQuery}:strict">
+                    <td>{{log.Date}}</td>
+                    <td>{{log.IpAddress}}</td>
+                    <td>{{log.Username}}</td>
+                    <td>{{log.StatusMessage}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
