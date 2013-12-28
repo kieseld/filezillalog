@@ -20,7 +20,7 @@ namespace FilezillaLog.Controllers.API_Controllers
 
         public IEnumerable<LogEntryEntity> Get()
         {
-            return logService.GetAllLogEntries().Where(l => l.Date >= DateTime.Today.AddDays(-1));
+            return logService.GetAllLogEntries();
         }
 
         // GET api/log/5
