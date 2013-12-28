@@ -1,5 +1,5 @@
 ﻿angular.module('filezillaLogApp')
-    .controller('Home', [
+    .controller('Log', [
         '$scope', 'Log',
         function ($scope, Log) {
 
