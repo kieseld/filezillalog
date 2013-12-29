@@ -15,7 +15,9 @@ namespace FilezillaLog.Controllers.API_Controllers
         // GET api/log
         public IEnumerable<LogEntryEntity> Get(string beginDate, string endDate)
         {
-            return logService.GetAllLogEntries();
+            DateTime begin = DateTime.Parse(beginDate);
+            DateTime end = DateTime.Parse(endDate);
+            return logService.GetAllLogEntries().Where(a => a.Date >= begin && a.Date <= end);
         }
 
         public IEnumerable<LogEntryEntity> Get()

@@ -1,4 +1,50 @@
 ﻿<div class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <p class="input-group">
+                <span class="input-group-addon width-95">Begin Date</span>
+                <input type="text"
+                       class="form-control"
+                       show-button-bar="false"
+                       show-weeks="false"
+                       datepicker-popup="{{format}}"
+                       ng-model="beginDate"
+                       data-is-open="openedBegin"
+                       min="beginMinDate"
+                       max="endDate"
+                       ng-required="true"
+                       data-close-text="Close" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default"
+                            ng-click="openBegin($event)">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
+            </p>
+        </div>
+        <div class="col-md-6">
+            <p class="input-group">
+                <span class="input-group-addon width-95">End Date</span>
+                <input type="text"
+                       class="form-control"
+                       show-button-bar="false"
+                       show-weeks="false"
+                       datepicker-popup="{{format}}"
+                       ng-model="endDate"
+                       data-is-open="openedEnd"
+                       min="beginDate"
+                       max="today"
+                       ng-required="true"
+                       data-close-text="Close" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default"
+                            ng-click="openEnd($event)">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
+            </p>
+        </div>
+    </div>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
