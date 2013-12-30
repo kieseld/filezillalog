@@ -35,6 +35,10 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
+td.message {
+    max-width: 200px;
+}
+
 /*Utility Classes*/
 
 .width-95 {

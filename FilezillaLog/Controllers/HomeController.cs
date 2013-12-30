@@ -12,7 +12,12 @@ namespace FilezillaLog.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.baseUrl = Request.RawUrl;
+            string baseUrl = Request.RawUrl;
+            if (!baseUrl.EndsWith("/"))
+            {
+                baseUrl = baseUrl + "/";
+            }
+            ViewBag.baseUrl = baseUrl;
             return View("index");
         }
     }

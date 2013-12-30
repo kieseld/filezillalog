@@ -14,6 +14,18 @@
                     });
             })
 
+            $scope.sortOrder = '-Date';
+
+            $scope.toggleSort = function (sort) {
+                if (sort === $scope.sortOrder) {
+                    $scope.sortOrder = "-" + sort;
+                }
+                else {
+                    $scope.sortOrder = sort;
+                }
+                console.log($scope.sortOrder);
+            }
+
             $scope.openBegin = function ($event) {
                 $event.preventDefault();
                 $event.stopPropagation();

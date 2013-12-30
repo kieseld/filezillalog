@@ -45,30 +45,28 @@
             </p>
         </div>
     </div>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Filters:</th>
-                    <th><input data-ng-model="ipQuery"></th>
-                    <th><input data-ng-model="nameQuery"></th>
-                    <th><input data-ng-model="messageQuery"></th>
-                </tr>
-                <tr>
-                    <th>Date</th>
-                    <th>IP Address</th>
-                    <th>User Name</th>
-                    <th>Message</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr data-ng-repeat="log in logs | filter:{IpAddress: ipQuery} | filter:{Username: nameQuery} | filter:{StatusMessage: messageQuery}:strict">
-                    <td>{{log.Date}}</td>
-                    <td>{{log.IpAddress}}</td>
-                    <td>{{log.Username}}</td>
-                    <td>{{log.StatusMessage}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive ">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th ng-click="toggleSort('Date')">Date<span class="glyphicon glyphicon-sort-by-attributes"></span></th>
+                            <th ng-click="toggleSort('IpAddress')">IP Address</th>
+                            <th ng-click="toggleSort('Username')">User Name</th>
+                            <th ng-click="toggleSort('StatusMessage')">Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="log in logs | filter:{IpAddress: ipQuery} | filter:{Username: nameQuery} | filter:{StatusMessage: messageQuery}:strict | orderBy:sortOrder">
+                            <td>{{log.Date}}</td>
+                            <td>{{log.IpAddress}}</td>
+                            <td>{{log.Username}}</td>
+                            <td class="message">{{log.StatusMessage}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
