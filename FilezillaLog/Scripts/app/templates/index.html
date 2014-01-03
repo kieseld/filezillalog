@@ -59,7 +59,7 @@
                     </thead>
                     <tbody>
                         <tr data-ng-repeat="log in logs | filter:{IpAddress: ipQuery} | filter:{Username: nameQuery} | filter:{StatusMessage: messageQuery}:strict | orderBy:sortOrder">
-                            <td>{{log.Date}}</td>
+                            <td>{{log.Date | date:'medium'}}</td>
                             <td>{{log.IpAddress}}</td>
                             <td>{{log.Username}}</td>
                             <td class="message">{{log.StatusMessage}}</td>
