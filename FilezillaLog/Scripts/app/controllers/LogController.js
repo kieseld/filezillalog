@@ -7,11 +7,27 @@
             $scope.beginDate = new Date();
             $scope.beginDate.setDate($scope.endDate.getDate() - 2);
 
-            $scope.$watch('endDate', function () {
-                Log.GetLogs($scope.beginDate, $scope.endDate).$promise.then(
-                    function (model) {
-                        $scope.logs = model;
-                    });
+            Log.GetLogs($scope.beginDate, $scope.endDate).$promise.then(
+                function (model) {
+                    $scope.logs = model;
+                });
+
+            $scope.$watch('endDate', function (newVal, oldVal) {
+                if (newVal !== oldVal) {
+                    Log.GetLogs($scope.beginDate, $scope.endDate).$promise.then(
+                        function (model) {
+                            $scope.logs = model;
+                        });
+                }
+            })
+
+            $scope.$watch('beginDate', function (newVal, oldVal) {
+                if (newVal !== oldVal) {
+                    Log.GetLogs($scope.beginDate, $scope.endDate).$promise.then(
+                        function (model) {
+                            $scope.logs = model;
+                        });
+                }
             })
 
             $scope.sortOrder = '-Date';

@@ -12,6 +12,10 @@ angular.module('filezillaLogApp', ['ngRoute', 'ngResource', 'ui.bootstrap']).
             , controller: 'Log'
         });
 
+        $routeProvider.when('/Account', {
+            redirectTo: '/Account'
+            });
+
         $routeProvider.otherwise({
             redirectTo: '/'
         });

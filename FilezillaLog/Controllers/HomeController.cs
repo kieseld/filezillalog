@@ -10,6 +10,7 @@ namespace FilezillaLog.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize(Users = "Administrator")]
         public ActionResult Index()
         {
             string baseUrl = Request.RawUrl;
