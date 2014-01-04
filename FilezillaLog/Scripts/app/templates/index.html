@@ -45,13 +45,14 @@
             </p>
         </div>
     </div>
-    <div class="row">
+    <div ng-hide="!loading">Searching....</div>
+    <div class="row" data-ng-hide="loading">
         <div class="col-md-12">
             <div class="table-responsive ">
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th ng-click="toggleSort('Date')">Date<span class="glyphicon glyphicon-sort-by-attributes"></span></th>
+                            <th ng-click="toggleSort('Date')">Date <span class="glyphicon glyphicon-sort-by-attributes"></span></th>
                             <th ng-click="toggleSort('IpAddress')">IP Address</th>
                             <th ng-click="toggleSort('Username')">User Name</th>
                             <th ng-click="toggleSort('StatusMessage')">Message</th>
@@ -69,5 +70,5 @@
             </div>
         </div>
     </div>
-    <div ng-show="logs.length === 0">No Logs Found</div>
+    <div ng-show="noResults">No Logs Found</div>
 </div>
