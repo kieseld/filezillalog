@@ -18,29 +18,47 @@ namespace FilezillaLog.Repository
 
             string path = config.AppSetting("logPath");
 
-            foreach (string file in Directory.GetFiles(path))
+            foreach (string filePath in Directory.GetFiles(path))
             {
-                foreach (string line in File.ReadLines(file))
+                using(FileStream fileStream = new FileStream(
+                    filePath, 
+                    FileMode.Open, 
+                    FileAccess.Read, 
+                    FileShare.ReadWrite))
                 {
-                    string[] delimiters = {"(", ") ", " - ", ")> "};
-                    string[] s = line.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-                    if (s.Length > 1)
+                    using (StreamReader streamReader = new StreamReader(fileStream))
                     {
-                        string[] date = s[1].Split(new string[] { "/", ":", " " }, StringSplitOptions.RemoveEmptyEntries);
-                        logs.Add(new LogEntryEntity
+                        while (!streamReader.EndOfStream)
                         {
-                            ConnectionId = s[0],
-                            Date = new DateTime(
-                                int.Parse(date[2]),
-                                int.Parse(date[0]),
-                                int.Parse(date[1]),
-                                int.Parse(date[3]),
-                                int.Parse(date[4]),
-                                int.Parse(date[5])),
-                            IpAddress = s[3],
-                            Username = s[2],
-                            StatusMessage = s[4]
-                        });
+                            string line = streamReader.ReadLine();
+                            string[] delimiters = { "(", ") ", " - ", ")> " };
+                            string[] s = line.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+                            if (s.Length > 1)
+                            {
+                                string[] date = s[1].Split(new string[] { "/", ":", " " }, StringSplitOptions.RemoveEmptyEntries);
+                                if (s[4].StartsWith("PASS ")) //mask password
+                                {
+                                    if (s[4].Length > 5)
+                                    {
+                                        s[4] = string.Concat(s[4].Substring(0, 5), "".PadLeft(5, '*'));
+                                    }
+                                }
+                                logs.Add(new LogEntryEntity
+                                {
+                                    ConnectionId = s[0],
+                                    Date = new DateTime(
+                                        int.Parse(date[2]),
+                                        int.Parse(date[0]),
+                                        int.Parse(date[1]),
+                                        int.Parse(date[3]),
+                                        int.Parse(date[4]),
+                                        int.Parse(date[5])),
+                                    IpAddress = s[3],
+                                    Username = s[2],
+                                    StatusMessage = s[4]
+                                });
+                            }
+                        }
                     }
                 }
             }

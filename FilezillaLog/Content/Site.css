@@ -44,3 +44,8 @@ td.message {
 .width-95 {
     width: 95px;
 }
+
+table tbody tr td {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}

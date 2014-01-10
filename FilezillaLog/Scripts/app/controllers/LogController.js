@@ -39,14 +39,18 @@
                 }
             })
 
-            $scope.sortOrder = '-Date';
+            $scope.sortOrder = 'Date';
 
-            $scope.toggleSort = function (sort) {
-                if (sort === $scope.sortOrder) {
+            $scope.toggleSort = function (sort, $event) {
+                var element = angular.element($event.currentTarget.children[0]);
+                element.removeClass();
+                if (sort.indexOf('-') === -1) {
                     $scope.sortOrder = "-" + sort;
+                    element.addClass('glyphicon glyphicon-sort-by-attributes-alt');
                 }
                 else {
                     $scope.sortOrder = sort;
+                    element.addClass('glyphicon glyphicon-sort-by-attributes');
                 }
                 console.log($scope.sortOrder);
             }

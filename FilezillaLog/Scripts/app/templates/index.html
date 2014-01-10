@@ -52,10 +52,10 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th ng-click="toggleSort('Date')">Date <span class="glyphicon glyphicon-sort-by-attributes"></span></th>
-                            <th ng-click="toggleSort('IpAddress')">IP Address</th>
-                            <th ng-click="toggleSort('Username')">User Name</th>
-                            <th ng-click="toggleSort('StatusMessage')">Message</th>
+                            <th ng-click="toggleSort('Date', $event)">Date <span ng-class="dateClass" class="glyphicon glyphicon-sort-by-attributes"></span></th>
+                            <th ng-click="toggleSort('IpAddress', $event)">IP Address <span class="glyphicon glyphicon-sort-by-attributes"></span></th>
+                            <th ng-click="toggleSort('Username', $event)">User Name <span class="glyphicon glyphicon-sort-by-attributes"></span></th>
+                            <th ng-click="toggleSort('StatusMessage', $event)">Message <span class="glyphicon glyphicon-sort-by-attributes"></span></th>
                         </tr>
                     </thead>
                     <tbody>
